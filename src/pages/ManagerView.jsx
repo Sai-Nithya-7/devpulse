@@ -20,8 +20,8 @@ const selectStyle = {
   padding: '10px 14px', fontSize: '14px', minWidth: '200px', outline: 'none'
 };
 
-export default function ManagerView() {
-  const [managerId, setManagerId] = useState('MGR-01');
+export default function ManagerView({lockedManagerId}) {
+  const [managerId, setManagerId] = useState(lockedManagerId || 'MGR-01');
   const [month, setMonth] = useState('2026-04');
 
   const teamDevs = developers.filter(d => d.manager_id === managerId);
@@ -68,7 +68,7 @@ export default function ManagerView() {
       <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
           <label style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Manager</label>
-          <select value={managerId} onChange={e => setManagerId(e.target.value)} style={selectStyle}>
+          <select value={managerId} onChange={e => !lockedManagerId && setManagerId(e.target.value)} style={lockedManagerId ? { ...selectStyle, opacity: 0.6, cursor: 'not-allowed' } : selectStyle} disabled={!!lockedManagerId}>
             {managers.map(m => (
               <option key={m.id} value={m.id}>{m.name} : {m.team}</option>
             ))}
