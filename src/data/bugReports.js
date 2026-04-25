@@ -1,0 +1,8 @@
+export const bugReports = [
+  { bug_id: "BUG-001", linked_issue_id: "JIRA-007", developer_id: "DEV-002", developer_name: "Noah Patel",  manager_id: "MGR-01", team_name: "Payments API",  severity: "medium", escaped_to_prod: true, status: "Open",   month_found: "2026-04", root_cause_bucket: "test gap" },
+  { bug_id: "BUG-002", linked_issue_id: "JIRA-012", developer_id: "DEV-006", developer_name: "Ishan Mehta", manager_id: "MGR-01", team_name: "Payments API",  severity: "low",    escaped_to_prod: true, status: "Open",   month_found: "2026-04", root_cause_bucket: "release config" },
+  { bug_id: "BUG-003", linked_issue_id: "JIRA-024", developer_id: "DEV-008", developer_name: "Zara Khan",   manager_id: "MGR-02", team_name: "Checkout Web",  severity: "high",   escaped_to_prod: true, status: "Open",   month_found: "2026-04", root_cause_bucket: "edge case" },
+  { bug_id: "BUG-004", linked_issue_id: "JIRA-013", developer_id: "DEV-003", developer_name: "Mia Lopez",   manager_id: "MGR-02", team_name: "Checkout Web",  severity: "medium", escaped_to_prod: true, status: "Closed", month_found: "2026-03", root_cause_bucket: "edge case" },
+  { bug_id: "BUG-005", linked_issue_id: "JIRA-025", developer_id: "DEV-005", developer_name: "Emma Roy",    manager_id: "MGR-03", team_name: "Mobile Growth", severity: "medium", escaped_to_prod: true, status: "Closed", month_found: "2026-03", root_cause_bucket: "test gap" },
+  { bug_id: "BUG-006", linked_issue_id: "JIRA-029", developer_id: "DEV-007", developer_name: "Owen Brooks", manager_id: "MGR-03", team_name: "Mobile Growth", severity: "high",   escaped_to_prod: true, status: "Closed", month_found: "2026-03", root_cause_bucket: "edge case" }
+];
