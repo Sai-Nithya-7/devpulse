@@ -1,10 +1,10 @@
 import { jiraIssues, pullRequests, deployments, developers, bugReports } from "../data";
 
 export function computeMetricsFromRaw(issues, prs, deps, bugs) {
-  const issues_done      = issues.length;
-  const merged_prs       = prs.length;
-  const prod_deps        = deps.length;
-  const escaped_bugs     = bugs.length;
+  const issues_done = issues.length;
+  const merged_prs  = prs.length;
+  const prod_deps = deps.length;
+  const escaped_bugs = bugs.length;
 
   const avg_cycle_time_days = issues_done > 0
     ? round(issues.reduce((s, d) => s + d.cycle_time_days, 0) / issues_done) : 0;
@@ -24,8 +24,8 @@ export function computeMetricsFromRaw(issues, prs, deps, bugs) {
   const avg_review_rounds = merged_prs > 0
     ? round(prs.reduce((s, d) => s + d.review_rounds, 0) / merged_prs, 1) : 0;
 
-  const hotfix_count       = deps.filter(d => d.release_type === 'hotfix').length;
-  const root_causes        = bugs.map(b => b.root_cause_bucket);
+  const hotfix_count = deps.filter(d => d.release_type === 'hotfix').length;
+  const root_causes = bugs.map(b => b.root_cause_bucket);
   const high_severity_bugs = bugs.filter(b => b.severity === 'high').length;
 
   return {
