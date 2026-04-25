@@ -9,12 +9,12 @@ This project is an attempt to close that gap.
 
 Takes five developer productivity metrics, works out what's likely causing them, and surfaces a plain-English diagnosis with two specific next steps.
 
-Not generic advice. The interpretation references your actual numbers — review wait time, PR size, bug root causes — and compares them against your teammates so context isn't missing.
+Instead of generic advice, the interpretation references your actual numbers such as review wait time, PR size, bug root causes, and compares them against your teammates so context isn't missing.
 
 
 ## How the reasoning works
 
-There's no ML here. The core is a pure-function reasoning engine that classifies your month into one of four patterns — Healthy Flow, Watch Bottlenecks, Quality Watch, Needs Review — and generates interpretation text from if/else rules I can read and explain.
+There's no ML here. The core is a pure-function reasoning engine that classifies your month into one of four patterns: Healthy Flow, Watch Bottlenecks, Quality Watch, Needs Review, and generates interpretation text from if/else rules I can read and explain.
 
 A few things it does that a standard dashboard doesn't:
 
