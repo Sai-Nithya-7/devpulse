@@ -20,9 +20,9 @@ A few things it does that a standard dashboard doesn't:
 
 **Peer benchmarking.** Your lead time card shows the team average underneath it. 3.8 days reads differently when your teammates are at 2.1 vs 5.2.
 
-**Contradiction detection.** Fast cycle time but slow lead time usually means the bottleneck is post-code — review queue or deploy pipeline, not development itself. The app catches combinations like this and calls them out separately.
+**Contradiction detection.** Fast cycle time but slow lead time usually means the bottleneck is post-code, review queue or deploy pipeline, not development itself. The logic catches combinations like this and calls them out separately.
 
-**Confidence flagging.** Two completed issues in a month is a thin sample. The app says so rather than displaying metrics like they mean something definitive.
+**Confidence flagging.** Two completed issues in a month is a thin sample. The website says so rather than displaying metrics like they mean something definitive.
 
 **Role scoping.** Developers see only their own data. Managers see only their team. Simulated here with a login screen; would be SSO in production.
 
@@ -39,6 +39,7 @@ A few things it does that a standard dashboard doesn't:
 
 
 ## Data layout
+```text
 src/data/
 ├── developers.js     ← identity, team, role
 ├── jiraIssues.js     ← cycle time
@@ -46,7 +47,7 @@ src/data/
 ├── deployments.js    ← lead time
 ├── bugReports.js     ← quality signals
 └── index.js
-
+```
 Each file maps to a source system. In production, replace the import with an API call.
 
 
@@ -65,7 +66,7 @@ npm install
 npm run dev
 ```
 
-`http://localhost:5173` — pick an identity on the login screen.
+`http://localhost:5173`  pick an identity on the login screen.
 
 
 ## Things I'd change with more time
