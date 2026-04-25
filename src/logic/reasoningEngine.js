@@ -1,5 +1,41 @@
 import { jiraIssues, pullRequests, deployments, developers, bugReports } from "../data";
 
+export function computeMetricsFromRaw(issues, prs, deps, bugs) {
+  const issues_done      = issues.length;
+  const merged_prs       = prs.length;
+  const prod_deps        = deps.length;
+  const escaped_bugs     = bugs.length;
+
+  const avg_cycle_time_days = issues_done > 0
+    ? round(issues.reduce((s, d) => s + d.cycle_time_days, 0) / issues_done) : 0;
+
+  const avg_lead_time_days = prod_deps > 0
+    ? round(deps.reduce((s, d) => s + d.lead_time_days, 0) / prod_deps) : 0;
+
+  const bug_rate_pct = issues_done > 0
+    ? round((escaped_bugs / issues_done) * 100) : 0;
+
+  const avg_review_wait_hours = merged_prs > 0
+    ? round(prs.reduce((s, d) => s + d.review_wait_hours, 0) / merged_prs) : 0;
+
+  const avg_lines_changed = merged_prs > 0
+    ? round(prs.reduce((s, d) => s + d.lines_changed, 0) / merged_prs) : 0;
+
+  const avg_review_rounds = merged_prs > 0
+    ? round(prs.reduce((s, d) => s + d.review_rounds, 0) / merged_prs, 1) : 0;
+
+  const hotfix_count       = deps.filter(d => d.release_type === 'hotfix').length;
+  const root_causes        = bugs.map(b => b.root_cause_bucket);
+  const high_severity_bugs = bugs.filter(b => b.severity === 'high').length;
+
+  return {
+    issues_done, merged_prs, prod_deps, escaped_bugs,
+    avg_cycle_time_days, avg_lead_time_days, avg_lines_changed,
+    avg_review_rounds, avg_review_wait_hours,
+    bug_rate_pct, hotfix_count, root_causes, high_severity_bugs,
+  };
+}
+
 export function computeMetrics(developerId, month) {
     const issues = jiraIssues.filter(
         d => d.developer_id === developerId && d.month_done === month
